@@ -17,7 +17,7 @@ void lcd_animate(char, char);
 
 void delay_ms(unsigned int ms)
 {
-	T0PR=60000-1;//for can 60MHz give 60000
+	T0PR=15000-1;//for can 60MHz give 60000
 	T0TCR=0X01;
 	while(T0TC<ms);
 	T0TCR=0X03;
