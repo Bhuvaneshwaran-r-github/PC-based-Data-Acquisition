@@ -38,7 +38,7 @@ Data acquisition systems are fundamental in industrial automation, IoT, environm
 
 ```
     ┌───────────────────────────────────────────────┐
-    │                    LPC2129 MCU                │
+    │                  LPC2129 MCU                  │
     │                                               │
     │   ┌─────────┐    ┌─────────┐    ┌─────────┐   │
     │   │  I2C    │    │   SPI   │    │  GPIO   │   │
