@@ -1,62 +1,113 @@
-# PC-based Data Acquisition System
+# 📊 PC-Based Data Acquisition System
 
-An embedded data acquisition system for LPC2129 microcontroller using I2C and SPI interfaces to collect, store, and display sensor data.
+An embedded data acquisition system using **I2C and SPI protocols** to collect, store, and display sensor data in real-time.
 
-## Features
+---
 
-- **I2C Communication**: Interface with EEPROM for data storage and RTC for timestamping
-- **SPI Interface**: Read analog sensor data via external ADC
-- **LCD Display**: 4-bit mode LCD for real-time data visualization
-- **Data Logging**: Store acquired data in EEPROM with timestamps
+## 📋 Project Description
 
-## Hardware Requirements
+This project implements a **Data Acquisition System (DAQ)** that interfaces with multiple sensors and storage devices using industry-standard communication protocols. The system demonstrates how industrial monitoring and logging systems work.
 
-- LPC2129 microcontroller development board
-- 16x2 LCD display
-- I2C EEPROM (e.g., 24C02)
-- RTC module (I2C-based)
-- SPI ADC (for analog sensor input)
-- Sensors for data acquisition
+### What I Built:
+- **I2C Interface**: Communication with EEPROM for data logging and RTC for timestamping
+- **SPI Interface**: High-speed data acquisition from external ADC
+- **LCD Display**: Real-time visualization of acquired data
+- **Data Logger**: Stores sensor readings with timestamps in non-volatile memory
 
-## Software Prerequisites
+### Real-World Application:
+Data acquisition systems are fundamental in industrial automation, IoT, environmental monitoring, and test & measurement equipment. This project demonstrates the core concepts used in professional DAQ systems.
 
-- Keil µVision IDE
-- LPC21xx header files
-- Flash Magic or similar programmer
+---
 
-## Building the Project
+## 🛠️ Technologies Used
 
-1. Open the project in Keil µVision
-2. Configure target settings for LPC2129
-3. Build the project (F7)
-4. Flash the hex file to the microcontroller
+| Category | Technology |
+|----------|------------|
+| **Microcontroller** | LPC2129 (ARM7TDMI-S) |
+| **Protocols** | I2C, SPI |
+| **Storage** | I2C EEPROM (24Cxx series) |
+| **Timekeeping** | I2C RTC Module |
+| **ADC** | SPI-based External ADC |
+| **IDE** | Keil µVision |
+| **Language** | Embedded C |
+| **Display** | 16x2 LCD (4-bit mode) |
 
-## File Structure
+---
 
-| File | Description |
-|------|-------------|
-| `data_acquisation.c` | Main application with I2C, SPI, and LCD functions |
-| `lcd_fourbit.h` | LCD driver header for 4-bit mode operation |
+## 📊 System Architecture
 
-## Interfaces
+```
+    ┌─────────────────────────────────────────────────────┐
+    │                    LPC2129 MCU                      │
+    │                                                     │
+    │   ┌─────────┐    ┌─────────┐    ┌─────────┐        │
+    │   │  I2C    │    │   SPI   │    │  GPIO   │        │
+    │   │ Master  │    │ Master  │    │  Pins   │        │
+    │   └────┬────┘    └────┬────┘    └────┬────┘        │
+    └────────┼──────────────┼──────────────┼─────────────┘
+             │              │              │
+        ┌────┴────┐    ┌────┴────┐    ┌────┴────┐
+        │ EEPROM  │    │   ADC   │    │   LCD   │
+        │   RTC   │    │         │    │ Display │
+        └─────────┘    └─────────┘    └─────────┘
+```
 
-### I2C Functions
-- `i2c_init()` - Initialize I2C peripheral
-- `eeprom_write()` / `eeprom_read()` - EEPROM data storage
-- `rtc()` - Real-time clock interface
+---
 
-### SPI Functions
-- SPI configuration for ADC communication
-- Data read operations for sensor values
+## 🔑 Key Skills Demonstrated
 
-### LCD Functions
-- 4-bit mode LCD initialization and control
-- String and data display routines
+### Serial Communication Protocols
 
-## How It Works
+**I2C (Inter-Integrated Circuit)**
+- Master-slave communication implementation
+- START/STOP condition generation
+- ACK/NACK handling
+- Multi-device addressing on shared bus
+- Clock stretching awareness
 
-1. System initializes I2C, SPI, and LCD peripherals
-2. Sensor data is acquired via SPI ADC
-3. Data is timestamped using RTC
-4. Values are displayed on LCD and optionally stored in EEPROM
-5. Continuous monitoring loop for real-time acquisition
+**SPI (Serial Peripheral Interface)**
+- Full-duplex communication
+- Mode configuration (CPOL, CPHA)
+- Chip select management
+- High-speed data transfer
+
+### Memory & Storage Operations
+- EEPROM page write with timing constraints
+- Sequential and random read operations
+- Wear leveling concepts for flash longevity
+- Data integrity verification
+
+### Real-Time Clock Integration
+- BCD to decimal conversion
+- Time/date formatting
+- Alarm and interrupt handling
+
+### Analog Data Acquisition
+- ADC sampling and conversion
+- Signal conditioning concepts
+- Sampling rate considerations
+- Resolution and accuracy
+
+### Embedded Software Design
+- Modular driver architecture
+- Hardware abstraction layer (HAL)
+- Polling vs interrupt-driven approaches
+- Resource management
+
+---
+
+## 📁 Project Structure
+
+| File | Purpose |
+|------|---------|
+| `data_acquisation.c` | Main application with I2C, SPI, LCD integration |
+| `lcd_fourbit.h` | LCD driver for 4-bit mode operation |
+
+---
+
+## 🎯 What I Learned
+
+- Implementing multiple serial protocols on a single MCU
+- Timing-critical operations in embedded systems
+- Non-volatile data storage techniques
+- Building modular, reusable driver code
